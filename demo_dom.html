@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        console.log("\tDemo DOM");
+        // lưu ý
+        // code js sẽ gen tuần tự từ trên xuống dưới, nên viết code js ở vị trí không hợp lý sẽ xuất hiện tình trạng unfined
+        console.log("\tLấy thông tin node trước khi khai báo html");
+        console.log(document.getElementById("thu-nhat"));
+
+    </script>
+</head>
+<body>
+    <h1>Bảng xếp hạng EPL</h1>
+    <div>
+        <img id="anht1" style="max-width: 100px; max-height: 100px;" src="lotus.png" alt="">
+    </div>
+    <p id="thu-nhat" class="top4">ManCity</p>
+    <p id="thu-hai" class="top4">Tottenham</p>
+    <p id="thu-ba" class="top4">Arsenal</p>
+    <p id="thu-tu" class="top4">Liverpool</p>
+    <button onclick="alert('Bạn vừa click')">Xuất hiện alert</button>
+    <button onclick="hamThemDeThu()">Gọi hàm function</button>
+    <button onclick="hamDoiMauChu()">Đổi màu chữ Tottenham</button>
+    <button onclick="hamKiemTraVongLap()">Vòng lặp</button>
+
+    
+    <script>
+        // Phần 1. Lấy thông tin node
+
+        console.log("\tLấy thông tin node theo id");
+        console.log(document.getElementById("thu-nhat"));// có giá trị
+        console.log(document.getElementById("thu-hai"));
+
+        console.log("\tLấy thông tin node theo class");
+        console.log(document.getElementsByClassName("top4"));
+        console.log(document.getElementsByClassName("top4")[0]);// lấy ra node theo vị trí
+
+        console.log(document.getElementsByClassName("top4").item(1));
+
+        console.log("\tLấy thông tin theo tagname");
+        console.log(document.getElementsByTagName("p"));
+
+        // Phần 2. Sửa thông tin node
+        // 1. lấy thông tin của node
+        console.log("\tSửa thông tin node");
+
+        let nodeThuTu = document.getElementById("thu-tu");
+        console.log(nodeThuTu);
+
+        // 2. sửa thông tin node
+        // sử dụng innerText
+        nodeThuTu.innerText = "MU";
+        nodeThuTu.innerText = '<h1>MU</h1>';
+
+        // sử dụng innerHTML
+        document.getElementById("thu-ba").innerHTML = '<h1>Arsenal</h1>';
+
+        // Phần 3. Sửa thuộc tính của node
+        console.log("\tSửa thuộc tính của node");
+        // 1. sửa thuộc tính style
+        let nodeThuNhat = document.getElementById("thu-nhat");
+        nodeThuNhat.style = "color: blue";
+        // nodeThuNhat.style = "background-color: gray";
+        
+        // dòng lệnh bổ sung thêm giá trị
+        nodeThuNhat.style.background = "gray";// cách 1
+        nodeThuNhat.style["background"] = "red";
+
+        // 2. thay đổi src cho ảnh
+        // lấy thông tin của node
+        document.getElementById("anht1").src = "logo.png";
+        document.getElementById("anht1").style = "max-width: 500px; max-height: 500px;";
+
+        // Phần 4. Bắt sự kiện tương tác của user
+
+        // demo sự kiện click
+        // khai báo fun
+        function hamThemDeThu() {
+            console.log("Bạn đã gọi được hàm");
+        }
+
+        // viết click button thì đổi chữ tottenham
+        function hamDoiMauChu() {
+            document.getElementById("thu-hai").style["color"] = "pink";
+        }
+
+        // khai báo html button và gọi hàm click
+
+        function hamKiemTraVongLap() {
+            console.log("Bạn đã gọi vào hàm");
+            document.getElementById("anht1").src = "logo.png";
+        }
+        setInterval(hamKiemTraVongLap(), 1000);
+
+        // ứng dụng thay đổi ảnh tự động
+
+
+        
+    </script>
+</body>
+</html>
